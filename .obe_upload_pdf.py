@@ -6,9 +6,9 @@ import sys
 AWS_ACCESS_KEY_ID = os.environ.get('AWSAccessKeyID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWSSecretAccessKey')
 AWS_REGION = os.environ.get('AWSRegion')
-S3_BUCKET_NAME = 'inbound-pdfs'
+INBOUND_S3 = 'inbound-pdfs'
 
-def upload_file_to_s3(file_path, s3_bucket_name):
+def post_pdf(file_path):
     try:
         # Initialize the S3 client
         s3_client = boto3.client(
@@ -22,9 +22,9 @@ def upload_file_to_s3(file_path, s3_bucket_name):
         file_name = os.path.basename(file_path)
 
         # Upload the file to the specified S3 bucket
-        s3_client.upload_file(file_path, s3_bucket_name, file_name)
+        s3_client.upload_file(file_path, INBOUND_S3, file_name)
 
-        print(f"File '{file_name}' uploaded to S3 bucket '{s3_bucket_name}' successfully.")
+        print(f"File '{file_name}' uploaded to S3 bucket '{INBOUND_S3}' successfully.")
     except Exception as e:
         print(f"Error uploading file: {str(e)}")
 
@@ -34,4 +34,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     file_path = sys.argv[1]
-    upload_file_to_s3(file_path, S3_BUCKET_NAME)
+    post_pdf(file_path)

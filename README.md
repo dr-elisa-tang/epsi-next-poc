@@ -21,7 +21,7 @@ docker run --rm -it -e AWSAccessKeyID=$AWSAccessKeyID -e AWSSecretAccessKey=$AWS
 
 ## Run the Python Script
 ```bash
-python epsi-text-extraction.py `/target/directory/file.pdf`
+python text-extraction.py `/target/directory/file.pdf`
 ```
 
 Check the inbound-pdfs and outbound-jsons buckets
