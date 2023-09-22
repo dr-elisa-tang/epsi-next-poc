@@ -46,7 +46,7 @@ def fetch_json(file_name):
         # Read and display the contents of the object (file)
         file_contents = response['Body'].read().decode('utf-8')
         print(f"")
-        print({file_contents})
+        print (f"'{file_contents}'")
     except Exception as e:
         print(f"Error retrieving and displaying file: {str(e)}")
 
@@ -58,5 +58,7 @@ if __name__ == "__main__":
     file_path = sys.argv[1]
     upload_pdf(file_path)
 
+
     file_name = os.path.basename(file_path) + ".json"
+    print (f"'{file_name}'")
     fetch_json(file_name)
