@@ -13,13 +13,9 @@ RUN pip install boto3
 WORKDIR /app
 
 # Copy your Python script with the new name to the container
-COPY upload_pdf.py /app/
-COPY fetch_json.py /app/
 COPY text-extraction.py /app/
 
 # Make your Python script executable
-RUN chmod +x /app/upload_pdf.py
-RUN chmod +x /app/fetch_json.py
 RUN chmod +x /app/text-extraction.py
 
 # Create a directory to store input files within the Docker image
