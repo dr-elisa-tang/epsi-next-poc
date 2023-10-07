@@ -60,5 +60,4 @@ if __name__ == "__main__":
 
 
     file_name = os.path.basename(file_path) + ".json"
-    print (f"'{file_name}'")
     fetch_json(file_name)

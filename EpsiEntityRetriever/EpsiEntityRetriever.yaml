@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  EpsiEntityRetriever:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: Retrieves and transforms data extracted by EpsiEntityExtractor
+      MemorySize: 1024
+      Timeout: 300
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      EphemeralStorage:
+        Size: 1024
+      PackageType: Zip
+      Tracing: Active
+      Policies:
+        Statement:
+          - Effect: Allow
+            Action:
+              - comprehend:DetectEntities
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - lambda:InvokeFunction
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - textract:StartDocumentTextDetection
+              - textract:GetDocumentTextDetection
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - textract:*
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - s3:*
+              - s3-object-lambda:*
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+            Resource: arn:aws-us-gov:logs:us-gov-west-1:471229275034:*
+          - Effect: Allow
+            Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource:
+              - >-
+                arn:aws-us-gov:logs:us-gov-west-1:471229275034:log-group:/aws/lambda/Epsi*:*
