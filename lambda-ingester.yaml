@@ -33,6 +33,34 @@ Resources:
         Statement:
           - Effect: Allow
             Action:
+              - comprehend:DetectEntities
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - lambda:InvokeFunction
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - textract:StartDocumentTextDetection
+              - textract:GetDocumentTextDetection
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - textract:*
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - s3:*
+              - s3-object-lambda:*
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - xray:PutTraceSegments
+              - xray:PutTelemetryRecords
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
               - logs:CreateLogGroup
             Resource: arn:aws:logs:us-east-2:067184574593:*
           - Effect: Allow
