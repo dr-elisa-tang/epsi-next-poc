@@ -11,7 +11,7 @@ Resources:
   lambdaingester:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
+      CodeUri: s3://cf-templates-eh76gma1q81r-us-east-2/2023-10-10T231710.765Zee9-lambda-ingester.yaml
       Description: ''
       MemorySize: 128
       Timeout: 3
