@@ -6,12 +6,8 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: https://raw.githubusercontent.com/dr-elisa-tang/epsi-next-poc/master/EpsiEntityExtractor/EpsiEntityExtractor.yaml
-      # Parameters:
-        # Define parameters for EpsiEntityExtractor
 
   LambdaFunction2:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: https://raw.githubusercontent.com/dr-elisa-tang/epsi-next-poc/master/EpsiEntityRetriever/EpsiEntityRetriever.yaml
-      # Parameters:
-        # Define parameters for EpsiEntityRetriever
